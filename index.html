@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=2">
     <title>Todo list</title>
     <style>
         button {
           
             padding: 3px;
             margin: 4px;
+            width: 20%;
+            height: 50px;
+
         }
         td{
             padding: 5px;
@@ -21,25 +24,30 @@
       border: 2px solid black;
   }
   table{
+
       width: 50%;
       border-collapse: collapse;
   }
   #txt{
+    display: inline;
       width: 30%;
-      height: 30px;
+      height: 50px;
       border: 2px solid black;
   }
 
   .btnclass{
-      width: 50%;
-      margin-left: 30%;
+      
+      display: inline;
+    
+     width: 80px;
       color: black;
       background-color: rgb(64, 240, 48);
       font-family: cursive;
       cursor: pointer;
+
   }
   #btn{
-    width: 10%;
+    width: 100px;
     color: black;
     background-color: rgb(64, 240, 48);
     font-family: cursive;
@@ -58,10 +66,9 @@
 
 <body>
 
-
     <div id="alignment">
     <h1>TODO LIST</h1>
-    <input type="text" id="txt" placeholder="Add here">
+    <input type="text" id="txt" placeholder="Click on add button">
     <button id="btn"  onclick="added()">Add</button>
     <div id="output"></div>
 </div>
