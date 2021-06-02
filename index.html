@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <style>
+        button {
+          
+            padding: 3px;
+            margin: 4px;
+        }
+        td{
+            padding: 5px;
+            font-size: 20px;
+           font-family: cursive;
+        }
+  table ,tr,th,td{
+      border: 2px solid black;
+  }
+  table{
+      width: 50%;
+      border-collapse: collapse;
+  }
+  #txt{
+      width: 30%;
+      height: 30px;
+      border: 2px solid black;
+  }
+
+  .btnclass{
+      width: 50%;
+      margin-left: 30%;
+      color: black;
+      background-color: rgb(64, 240, 48);
+      font-family: cursive;
+      cursor: pointer;
+  }
+  #btn{
+    width: 10%;
+    color: black;
+    background-color: rgb(64, 240, 48);
+    font-family: cursive;
+    cursor: pointer;
+  }
+
+#alignment{
+    margin-left: 30%;
+    margin-top: 5%;
+}
+ 
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <div id="alignment">
+    <h1>TODO LIST</h1>
+    <input type="text" id="txt" placeholder="Add here">
+    <button id="btn"  onclick="added()">Add</button>
+    <div id="output"></div>
+</div>
+
+
+    <script>
+      let list = [];
+      const temp=document.getElementById("txt");
+
+
+        function added() {
+         if(temp.value)
+         {
+             list.push(temp.value);
+           
+                build();
+           
+         }
+ 
+        }
+
+
+        function show()
+        {
+            if (list.length==0)
+            {
+                output.innerHTML="<h2>Your Todo List is Empty!! <h2>";
+            
+            }
+            else 
+            {
+                output.innerHTML="<h2>My List<h2>";
+                  
+            }
+           
+        }
+    
+        
+
+
+        window.onload = build;
+        function build() {
+               show();
+              
+              
+               const table = document.createElement("table");
+               for (let i = 0; i < list.length; i++) {
+                const row = document.createElement("tr");
+                row.ind=i;
+              
+        
+
+                const sl = document.createElement("td");
+                sl.innerHTML = i+1;
+                const r1 = document.createElement("td");
+                r1.innerHTML = list[i];
+
+                const btn1 = document.createElement("button");
+                btn1.innerHTML = "Edit";
+                btn1.className="btnclass";
+                const r2 = document.createElement("td");
+                r2.appendChild(btn1)
+                const btn2 = document.createElement("button");
+                btn2.innerHTML = "Delete";
+                btn2.className="btnclass";
+                
+                const btn=document.getElementById("btn");
+                btn.addEventListener("mouseover",function(){
+                    btn.style.backgroundColor="red";
+                    btn.style.color="white";})
+                 btn.addEventListener("mouseout",function(){
+                        btn.style.backgroundColor="rgb(64, 240, 48)";
+                        btn.style.color="black";})
+
+
+
+                btn1.addEventListener("mouseover",function(){
+                    this.style.backgroundColor="red";
+                    this.style.color="white";
+
+                })
+                btn1.addEventListener("mouseout",function(){
+                    this.style.backgroundColor="rgb(64, 240, 48)";
+                    this.style.color="black";
+                })
+
+
+
+                btn2.addEventListener("mouseover",function(){
+                    this.style.backgroundColor="red";
+                    this.style.color="white";
+
+                })
+                btn2.addEventListener("mouseout",function(){
+                    this.style.backgroundColor="rgb(64, 240, 48)";
+                    this.style.color="black";
+                })
+
+                const r3 = document.createElement("td");
+                r3.appendChild(btn2)
+                btn2.addEventListener("click",function(){
+                    let temp=list.splice(i,1);
+                    build();
+
+                })
+               
+                btn1.addEventListener("click",function(){
+                    row.style.backgroundColor="yellow";
+                    let temp=list[i];
+                    r1.innerHTML="";
+                    const inp= document.createElement("input");
+                    r1.appendChild(inp);
+                    inp.className="editable";
+                    inp.value=temp;
+                    inp.focus();
+                    inp.addEventListener("blur",function(){
+                        r1.innerHTML=inp.value;
+                        row.style.backgroundColor="white";
+                    })
+                   
+                  
+
+                })
+
+
+
+                row.appendChild(sl);
+                row.appendChild(r1);
+                row.appendChild(r2);
+                row.appendChild(r3);
+                table.appendChild(row);
+            }
+
+            output.appendChild(table);
+          
+        }
+
+    </script>
+</body>
+
+</html>
